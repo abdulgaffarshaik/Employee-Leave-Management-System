@@ -1,5 +1,11 @@
-# Ignore zip files
+# Node
+node_modules/
+
+# Environment variables
+.env
+
+# Zip files
 *.zip
 
-# Ignore python scripts
+# Scripts
 zip.py
