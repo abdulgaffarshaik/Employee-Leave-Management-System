@@ -1,0 +1,206 @@
+.emp-dashboard {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+}
+
+.emp-title {
+  font-size: 18px;          /* smaller than title */
+  font-weight: 500;
+  color: #475569;
+  margin-bottom: 20px;
+}
+
+.emp-actions {
+  display: flex;
+  gap: 20px;
+}
+
+.emp-card {
+  flex: 1;
+  padding: 30px;
+  background: white;
+  text-align: center;
+  text-decoration: none;
+  color: #1e293b;
+  font-size: 18px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: 0.3s;
+}
+
+.emp-card:hover {
+  transform: translateY(-5px);
+  background: #2563eb;
+  color: white;
+}
+
+.emp-form-container {
+  max-width: 600px;
+  margin: auto;
+}
+
+.emp-form {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.emp-form div {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.emp-form label {
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.emp-form input,
+.emp-form textarea {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.emp-form button {
+  margin-top: 10px;
+  width: 100%;
+}
+
+.emp-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.emp-table th,
+.emp-table td {
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+.emp-table th {
+  background: #2563eb;
+  color: white;
+}
+
+.status.approved { color: green; font-weight: 600; }
+.status.rejected { color: red; font-weight: 600; }
+.status.pending { color: orange; font-weight: 600; }
+
+.filter-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.filter-bar select,
+.filter-bar input {
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.view-btn {
+  padding: 5px 10px;
+  border-radius: 6px;
+  border: none;
+  background: #64748b;
+  color: white;
+  cursor: not-allowed;
+}
+
+.emp-table button {
+  margin: 0 4px;
+  padding: 5px 10px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+.emp-table button:first-child { background: #2563eb; color: white; }
+.emp-table button:last-child { background: #dc2626; color: white; }
+
+.emp-main-title {
+  font-size: 32px;          /* BIG */
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 4px;
+}
+
+.filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin: 20px 0;
+  padding: 15px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.filter-bar select,
+.filter-bar input {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #cbd5f5;
+  font-size: 14px;
+  outline: none;
+}
+
+.filter-bar select {
+  width: 140px;
+}
+
+.filter-bar input {
+  width: 150px;
+}
+
+.filter-bar button {
+  padding: 8px 18px;
+  border-radius: 20px;
+  border: none;
+  background: #2563eb;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.filter-bar button:hover {
+  background: #1d4ed8;
+}
+
+.filter-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.filter-item label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #475569;
+}
+
+/* === THEME SAFE TEXT FIX === */
+.emp-form-container,
+.emp-table,
+.emp-table td,
+.emp-table th,
+.emp-main-title,
+.emp-title {
+  color: var(--text-color) !important;
+  background: var(--card-bg);
+}
+
+/* Header background should remain strong */
+.emp-table th {
+  background: var(--primary);
+  color: #ffffff;
+}

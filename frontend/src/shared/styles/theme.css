@@ -1,0 +1,36 @@
+:root {
+  --bg-color: #f5f7fa;
+  --text-color: #0f172a;     /* dark text */
+  --card-bg: #ffffff;
+  --primary: #2563eb;
+}
+
+[data-theme="dark"] {
+  --bg-color: #0f172a;
+  --text-color: #f8fafc;     /* light text */
+  --card-bg: #1e293b;
+  --primary: #38bdf8;
+}
+
+body {
+  background: var(--bg-color);
+  color: var(--text-color);
+}
+
+h1, h2, h3, h4, h5, h6,
+p, span, label, td, th {
+  color: var(--text-color);
+}
+
+table {
+  background: var(--card-bg);
+}
+
+button {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
