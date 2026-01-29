@@ -3,7 +3,7 @@ import { request } from "../../../core/api/http";
 export const applyLeaveAPI = (data) =>
   request("/employee/apply", {
     method: "POST",
-    body: JSON.stringify(data),
+    body: JSON.stringify(data)
   });
 
 export const getMyLeavesAPI = (params = "") =>
@@ -16,4 +16,12 @@ export const updateLeaveAPI = (id, data) =>
   });
 
 export const deleteLeaveAPI = (id) =>
-  request(`/employee/delete/${id}`, { method: "DELETE" });
+  request(`/employee/delete/${id}`, {
+    method: "DELETE"
+  });
+
+export const getEmployeesAPI = () =>
+  request("/employee/list");
+
+export const getNotificationsAPI = () =>
+  request("/notification");

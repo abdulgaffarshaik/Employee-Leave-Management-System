@@ -3,20 +3,21 @@ const BASE_URL = "http://localhost:5000/api";
 export const request = async (endpoint, options = {}) => {
   const token = localStorage.getItem("token");
 
-  const config = {
+  const response = await fetch(`${BASE_URL}${endpoint}`, {
+    method: options.method || "GET",
+    body: options.body,
     headers: {
       "Content-Type": "application/json",
-      ...(token && { Authorization: `Bearer ${token}` })
-    },
-    ...options
-  };
+      ...(token && { Authorization: `Bearer ${token}` }),
+      ...(options.headers || {})
+    }
+  });
 
-  const response = await fetch(`${BASE_URL}${endpoint}`, config);
-
+  // 🔐 Handle unauthorized
   if (response.status === 401) {
     localStorage.clear();
     window.location.href = "/login";
-    return;
+    return Promise.reject("Unauthorized");
   }
 
   const data = await response.json();

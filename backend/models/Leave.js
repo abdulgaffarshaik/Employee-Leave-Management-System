@@ -7,21 +7,20 @@ const leaveSchema = new mongoose.Schema(
       ref: "User",
       required: true
     },
-    reason: {
-      type: String,
-      required: true
+
+    replacementEmployee: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      default: null
     },
-    fromDate: {
-      type: Date,
-      required: true
-    },
-    toDate: {
-      type: Date,
-      required: true
-    },
-    description: {
-      type: String
-    },
+
+    reason: { type: String, required: true },
+
+    fromDate: { type: Date, required: true },
+    toDate: { type: Date, required: true },
+
+    description: String,
+
     status: {
       type: String,
       enum: ["pending", "approved", "rejected"],
