@@ -16,7 +16,6 @@ The Employee Leave Management System (ELMS) is a full-stack web application desi
 - [Conclusion](#conclusion)
 - [Future Enhancements](#future-enhancements)
 - [References](#references)
-- [Acknowledgement](#acknowledgement)
 
 ---
 
@@ -118,9 +117,18 @@ npm run start
 cd ../frontend
 npm install
 npm run dev
+
+#Environment Configuration
+
+The backend uses environment variables for secure configuration.  
+Create a `.env` file inside the **backend** folder:
+
+```env
+PORT=5000
+MONGO_URI=mongodb://127.0.0.1:27017/leave_management_system
+JWT_SECRET=ELMS_STRONG_SECRET_2026
 ```
 ---
-
 
 ## Results
 The Employee Leave Management System (ELMS) was successfully designed and implemented as a full-stack web application. The system provides role-based dashboards for Employees, Managers, and Admins, enabling smooth leave application, approval, and monitoring processes.
@@ -151,6 +159,9 @@ The use of modern web technologies such as the MERN stack and JWT-based authenti
 - Express.js Documentation – https://expressjs.com  
 - MongoDB Documentation – https://www.mongodb.com/docs  
 - JSON Web Token (JWT) – https://jwt.io  
-- MDN Web Docs – https://developer.mozilla.org  
-- ChatGPT by OpenAI – https://chat.openai.com  
+- GitHub Documentation – https://docs.github.com
+- ChatGPT by OpenAI – https://chat.openai.com 
+
+
+
 
