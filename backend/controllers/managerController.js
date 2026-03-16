@@ -6,13 +6,45 @@ import Notification from "../models/Notification.js";
 ======================= */
 export const getAllLeaves = async (req, res) => {
   try {
-    const leaves = await Leave.find()
+    // Build filter object from query parameters
+    const filter = {};
+
+    // Filter by status
+    if (req.query.status) {
+      filter.status = req.query.status;
+    }
+
+    // Filter by date range
+    if (req.query.from || req.query.to) {
+      filter.fromDate = {};
+      if (req.query.from) {
+        filter.fromDate.$gte = new Date(req.query.from);
+      }
+      if (req.query.to) {
+        filter.toDate = filter.toDate || {};
+        filter.toDate.$lte = new Date(req.query.to);
+      }
+      // Handle the case where we need to check if leave is within date range
+      if (req.query.from && req.query.to) {
+        filter.$expr = {
+          $and: [
+            { $lte: ["$fromDate", new Date(req.query.to)] },
+            { $gte: ["$toDate", new Date(req.query.from)] }
+          ]
+        };
+        delete filter.fromDate;
+        delete filter.toDate;
+      }
+    }
+
+    const leaves = await Leave.find(filter)
       .populate("employee", "name employeeId leaveBalance usedLeavesThisMonth")
       .populate("replacementEmployee", "name employeeId")
       .sort({ createdAt: -1 });
 
     res.json(leaves);
   } catch (error) {
+    console.error("Failed to fetch leaves:", error);
     res.status(500).json({ message: "Failed to fetch leaves" });
   }
 };

@@ -9,6 +9,7 @@ import managerRoutes from "./routes/managerRoutes.js";
 import adminRoutes from "./routes/adminRoutes.js";
 import loggerMiddleware from "./middleware/loggerMiddleware.js";
 import notificationRoutes from "./routes/notificationRoutes.js";
+import timetableRoutes from "./routes/timetableRoutes.js";
 import { monthlyLeaveReset } from "./utils/leaveCron.js";
 
 // Load Environment Variables
@@ -34,6 +35,7 @@ app.use("/api/employee", employeeRoutes);
 app.use("/api/manager", managerRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/notification", notificationRoutes);
+app.use("/api/timetable", timetableRoutes);
 
 
 app.get("/", (req, res) => {
