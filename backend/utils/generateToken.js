@@ -8,7 +8,6 @@ const generateToken = (user) => {
       employeeId: user.employeeId
     },
     process.env.JWT_SECRET
-    // No expiresIn → token never expires
   );
 };
 

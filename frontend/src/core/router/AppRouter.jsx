@@ -3,6 +3,7 @@ import AuthLayout from "../layouts/AuthLayout";
 import DashboardLayout from "../layouts/DashboardLayout";
 import ProtectedRoute from "../guards/ProtectedRoute";
 
+import Welcome from "../../pages/Welcome";
 import Login from "../../modules/auth/pages/Login";
 import Register from "../../modules/auth/pages/Register";
 import ForgotPassword from "../../modules/auth/pages/ForgotPassword";
@@ -24,8 +25,8 @@ const AppRouter = () => {
   return (
     <Routes>
 
-      {/* Default Redirect */}
-      <Route path="/" element={<Navigate to="/login" />} />
+      {/* Welcome Page - Home */}
+      <Route path="/" element={<Welcome />} />
 
       <Route element={<AuthLayout />}>
         <Route path="/login" element={<Login />} />

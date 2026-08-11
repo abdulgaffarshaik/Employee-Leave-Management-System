@@ -10,6 +10,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (data) => {
     const res = await loginUser(data);
+    // Always use the token from login response
     localStorage.setItem("token", res.token);
     localStorage.setItem("user", JSON.stringify(res.user));
     setUser(res.user);
@@ -17,7 +18,7 @@ export const AuthProvider = ({ children }) => {
 
   const logout = () => {
     localStorage.clear();
-    window.location.href = "/login";
+    window.location.href = "/";
   };
 
   return (

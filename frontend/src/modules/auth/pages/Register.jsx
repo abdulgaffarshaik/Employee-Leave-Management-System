@@ -25,7 +25,10 @@ const Register = () => {
     }
 
     try {
-      await registerUser(form);
+      const res = await registerUser(form);
+      // Store token and user from registration
+      localStorage.setItem("token", res.token);
+      localStorage.setItem("user", JSON.stringify(res.user));
       alert("Registration Successful. Please Login.");
       navigate("/login");
     } catch (err) {

@@ -7,6 +7,9 @@ export const register = async (req, res) => {
   try {
     const { name, employeeId, email, password, role, designation } = req.body;
 
+    // Convert role to lowercase for consistency
+    const normalizedRole = role ? role.toLowerCase() : role;
+
     if (!validatePassword(password)) {
       return res.status(400).json({ message: "Weak password format" });
     }
@@ -25,8 +28,8 @@ export const register = async (req, res) => {
       employeeId,
       email,
       password: hashed,
-      role,
-      designation: role === "admin" ? null : designation
+      role: normalizedRole,
+      designation: normalizedRole === "admin" ? null : designation
     });
 
     res.status(201).json({
@@ -34,13 +37,14 @@ export const register = async (req, res) => {
       user: { id: user._id, name: user.name, role: user.role }
     });
   } catch (err) {
-    res.status(500).json({ message: "Registration failed" });
+    console.error("Registration error:", err);
+    res.status(500).json({ message: "Registration failed", error: err.message });
   }
 };
 
 export const login = async (req, res) => {
   try {
-    const { employeeId, email, password } = req.body;
+    const { employeeId, email, password, restrictRole } = req.body;
 
     const user = await User.findOne({
       $or: [{ employeeId }, { email }]
@@ -51,12 +55,19 @@ export const login = async (req, res) => {
     const match = await bcrypt.compare(password, user.password);
     if (!match) return res.status(400).json({ message: "Invalid credentials" });
 
+    // Check if role restriction is enforced
+    if (restrictRole && user.role !== restrictRole) {
+      return res.status(403).json({ message: `Only ${restrictRole}s can login here` });
+    }
+
     res.json({
       token: generateToken(user),
-      user: { id: user._id, name: user.name, role: user.role }
+      user: { id: user._id, name: user.name, role: user.role },
+      message: "Login successful"
     });
-  } catch {
-    res.status(500).json({ message: "Login failed" });
+  } catch (err) {
+    console.error("Login error:", err);
+    res.status(500).json({ message: "Login failed", error: err.message });
   }
 };
 
@@ -74,7 +85,8 @@ export const resetPassword = async (req, res) => {
     await user.save();
 
     res.json({ message: "Password updated successfully" });
-  } catch {
-    res.status(500).json({ message: "Reset failed" });
+  } catch (err) {
+    console.error("Reset password error:", err);
+    res.status(500).json({ message: "Reset failed", error: err.message });
   }
 };
